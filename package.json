@@ -1,0 +1,10 @@
+{
+	"name":"pmtacontroller",
+	"description":"auto selects from given vmtas based on provided arguments",
+	"version":"1.33.7",
+	"private":true,
+	"dependencies":{
+		"commander":"latest",
+		"xml2js":"latest"
+	}
+}

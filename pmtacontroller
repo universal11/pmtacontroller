@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+var Program = require("commander");
+var FileSystem = require("fs");
+var PMTAController = require("./classes/PMTAController.js");
+var Models = require("./models");
+var VMTA = Models.VMTA;
+
+
+function additionalHelp(){
+	console.log("Additional TBD.");
+}
+
+Program
+	.version("1.3.3.7")
+	.option("-c, --config <path>", "Config file location");
+
+Program.on("--help", additionalHelp);
+
+Program.parse(process.argv);
+
+
+if(!Program.config){
+	Program.help();
+	return 1;
+}
+
+//change to VMTA models
+var vmtas = PMTAController.getVMTAsFromConfig(Program.config, FileSystem);
+
+for(var i=0; i < vmtas.length; i++){
+	//do stuff with vmtas
+	var vmta = vmtas[i];
+	console.log(vmta["virtual-mta"].domain);
+}
+
